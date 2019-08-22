@@ -1,0 +1,21 @@
+<div class="container" >
+<div id="hashtagsearch">
+  <input type="text" placeholder="Search Tweets by Hashtag" #hashtagsearchvalue name="hashtagsearchvalue" />
+  <input type="submit" value="Search by Hashtag"  (click)="searchhashtagtweets(hashtagsearchvalue.value)"/>
+</div>
+
+<div id="locationsearch">
+    <input type="text" placeholder="Search Tweets by Location" #locationsearchvalue name="searchvalue" />
+    <input type="submit" value="Search by Location"  (click)="searchlocationtweets(locationsearchvalue.value)"/>
+  </div>
+  <table>
+      <tr *ngFor="let item of twitterData">
+        <th  [innerHtml]="item.tweetid"></th>
+        <th [innerHtml]="item.text"></th>
+        <th [innerHtml]="item.source"></th>
+        <th [innerHtml]="item.place"></th>
+      </tr>
+     
+    </table>
+    
+  </div>
