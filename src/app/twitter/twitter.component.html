@@ -8,7 +8,7 @@
     <input type="text" placeholder="Search Tweets by Location" #locationsearchvalue name="searchvalue" />
     <input type="submit" value="Search by Location"  (click)="searchlocationtweets(locationsearchvalue.value)"/>
   </div>
-  <table>
+  <table *ngIf="tweetdata">
       <tr *ngFor="let item of twitterData">
         <th  [innerHtml]="item.tweetid"></th>
         <th [innerHtml]="item.text"></th>

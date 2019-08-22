@@ -1,9 +1,9 @@
 var ids = {
     
     twitter: {
-      consumerKey: 'lfumqa1OunmkBrpSu3w4hi6Cd',
-      consumerSecret: 'BHyviKIimYgyseU7PG8ru1GpOOA1bSYhXf8wRNBT2i2stBF3JP',
-      callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+      consumerKey: 'Zqzw4MILLto03SW0CKvwp8USH',
+      consumerSecret: 'd4DYzUCooRFDtkKVFKeESS4zLrAGURzimP8VXV9a3ekv8craQY',
+      callbackURL: "http://127.0.0.1:4200/twitter/gettweets"
     }
   };
   

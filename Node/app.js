@@ -16,10 +16,10 @@ var session = require('express-session');
 var routes = require('./routes/index.js');
 
 var Twitter = new Twit({
-  consumer_key:         'lfumqa1OunmkBrpSu3w4hi6Cd',
-  consumer_secret:      'BHyviKIimYgyseU7PG8ru1GpOOA1bSYhXf8wRNBT2i2stBF3JP',
-  access_token:         '1163881434097958913-M0FX25w8Rc1fw7hRlKx15MUEH9S8OB',
-  access_token_secret:  'iCCiwyfs9tdIU8EF4ctlmnYcPTUfZbd0OqWMoYHkZ5lge'
+  consumer_key:         'Zqzw4MILLto03SW0CKvwp8USH',
+  consumer_secret:      'd4DYzUCooRFDtkKVFKeESS4zLrAGURzimP8VXV9a3ekv8craQY',
+  access_token:         '1163881434097958913-tcKdluRK35w7C6vYBjM5URHaVx8OWt',
+  access_token_secret:  'xKruv8MMkIgWOjtreqgJnSXO0sfG1OHQa4D50oBI7opC6'
   });
 // *** express instance *** //
 var app = express();
@@ -88,15 +88,19 @@ passportTwitter.authenticate('twitter', {
             console.log(data)
             if(!err) { res.send(data.statuses); }
           })
-          // Twitter.get('search/tweets', {  locations: location+' since:7 days', count: 100 }, function (err, data, response) {
-          //   console.log(data.statuses)
-          //   if(!err) { res.send(data.statuses); }
-          //   })
           })  
+
+
+          app.get('/auth/twitter/gettweetshavingurl', (req, res) => {
+            Twitter.get('search/tweets', { q: 'href since:7 days', count: 100 }, function (err, data, response) {
+              console.log(data)
+            if(!err) { res.send(data.statuses); }
+          })
+
+        });
  
 app.get('/auth/twitter/gettweets', (req, res) => {
-  Twitter.get('search/tweets', { q: 'href since:7 days', count: 100 }, function (err, data, response) {
-    console.log(data.statuses)
+  Twitter.get('search/tweets', { q: 'since:7 days, count: 100' }, function (err, data, response) {
    for(var item of data.statuses) {
      var tweets = new Tweets({
         tweetid: item.id,
@@ -112,35 +116,13 @@ app.get('/auth/twitter/gettweets', (req, res) => {
           else{console.log(JSON.stringify(err,undefined,2))}
       })
    }
-  //   var tweets = new Twittermodel({
-  //     name: req.body.name,
-  //     position: req.body.position,
-  //     office: req.body.office,
-  //     salary: req.body.salary
-  // });
-  
-  // tweets.save((err,doc) => {
-  //     if(!err) {res.send(doc)}
-  //     else{console.log(JSON.stringify(err,undefined,2))}
-  // })
+   
   })
 });
 
 
         
 
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   var err = new Error('Not Found');
-//   err.status = 404;
-//   next(err);
-// });
-
-
-// *** error handlers *** //
-
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -151,8 +133,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
+
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {

@@ -1,5 +1,18 @@
 
 <input type="submit" (click)="loginviatwitter()" value="Login via Twitter" />
+<input type="submit" (click)="gettweets()" value="Get Tweets and save in DB" />
 <input type="submit" (click)="searchtweets()" value="Search Tweets" />
+<input type="submit" (click)="gettweetshavingurl()" value="Get Tweets having URL" />
 
+<div *ngIf="status!=''">{{status}}</div>
+
+<table *ngIf="gettweetdata">
+        <tr *ngFor="let item of twitterData">
+          <th  [innerHtml]="item.tweetid"></th>
+          <th [innerHtml]="item.text"></th>
+          <th [innerHtml]="item.source"></th>
+          <th [innerHtml]="item.place"></th>
+        </tr>
+       
+      </table>
 <router-outlet></router-outlet>

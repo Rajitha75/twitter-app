@@ -8,11 +8,13 @@ import { TwitterService } from '../services/twitter.service';
 })
 export class TwitterComponent implements OnInit {
   twitterData:any;
+  tweetdata = false;
   constructor(private twitterservice : TwitterService) { }
 
   ngOnInit() {
-    console.log('ss')
+    this.tweetdata = false;
     this.twitterservice.gettweets().subscribe(data => {
+      this.tweetdata = true;
       this.twitterData = data;
       console.log(this.twitterData)
     })
@@ -20,6 +22,7 @@ export class TwitterComponent implements OnInit {
 
   searchhashtagtweets(searchtweets){
     this.twitterservice.gethashtagsearchtweets(searchtweets).subscribe(data => {
+      this.tweetdata = true;
       this.twitterData = data;
       console.log(this.twitterData)
     })
@@ -27,6 +30,7 @@ export class TwitterComponent implements OnInit {
 
   searchlocationtweets(searchtweets){
     this.twitterservice.getlocationsearchtweets(searchtweets).subscribe(data => {
+      this.tweetdata = true;
       this.twitterData = data;
       console.log(this.twitterData)
     })

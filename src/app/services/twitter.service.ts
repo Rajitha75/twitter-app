@@ -21,8 +21,7 @@ export class TwitterService {
   }
 
   public gettweets():Observable<any>{
-    console.log(this.baseUrl+'auth/twitter/getsavedtweets')
-    return this.http.get(this.baseUrl+'auth/twitter/getsavedtweets');
+    return this.http.get(this.baseUrl+'auth/twitter/gettweets');
   }
 
   public gethashtagsearchtweets(searchtweets):Observable<any>{
@@ -31,6 +30,10 @@ export class TwitterService {
   
   public getlocationsearchtweets(searchtweets):Observable<any>{
     return this.http.get(this.baseUrl+'auth/twitter/getlocationsearchtweets?search='+searchtweets);
+  }
+
+  public gettweetshavingurl():Observable<any>{
+    return this.http.get(this.baseUrl+'auth/twitter/gettweetshavingurl');
   }
   
 }
